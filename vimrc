@@ -1,8 +1,7 @@
 
 syntax on
-set background=light
-colorscheme solarized
-
+set background=dark
+colorscheme gruvbox 
 
 set number
 filetype plugin indent on
