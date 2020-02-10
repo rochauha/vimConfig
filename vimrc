@@ -15,6 +15,9 @@ set showmatch
 set cursorline
 
 
+" Termdebug
+packadd termdebug
+
 " NERDTree
 set runtimepath^=~/.vim/bundle/nerdtree/
 map <C-n> :NERDTreeToggle<CR>
