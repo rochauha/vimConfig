@@ -22,6 +22,10 @@ set runtimepath^=~/.vim/bundle/nerdtree/
 map <C-n> :NERDTreeToggle<CR>
 
 
+" Auto Pairs
+set runtimepath^=~/.vim/bundle/auto-pairs/
+
+
 " airline
 set runtimepath^=~/.vim/bundle/vim-airline/
 
@@ -29,3 +33,4 @@ set runtimepath^=~/.vim/bundle/vim-airline/
 " airline-themes
 set runtimepath^=~/.vim/bundle/vim-airline-themes/
 let g:airline_theme='base16_gruvbox_dark_hard'
+
