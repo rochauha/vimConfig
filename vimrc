@@ -19,11 +19,17 @@ packadd termdebug
 
 " NERDTree
 set runtimepath^=~/.vim/bundle/nerdtree/
-map <C-n> :NERDTreeToggle<CR>
+map <C-t> :NERDTreeToggle<CR>
 
 
 " Auto Pairs
 set runtimepath^=~/.vim/bundle/auto-pairs/
+
+
+" Buftabline
+set runtimepath^=~/.vim/bundle/vim-buftabline/
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprev<CR>
 
 
 " airline
