@@ -15,6 +15,7 @@ set cursorline
 
 " Termdebug
 packadd termdebug
+map <C-g> :Termdebug<CR>
 
 
 " NERDTree
