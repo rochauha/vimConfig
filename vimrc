@@ -46,3 +46,7 @@ set runtimepath^=~/.vim/bundle/vim-airline-themes/
 helptags ~/.vim/bundle/vim-airline-themes/doc/  " help airline-theme/s
 let g:airline_theme='base16_gruvbox_dark_hard'
 
+
+" fugitive
+set runtimepath^=~/.vim/bundle/vim-fugitive/
+helptags ~/.vim/bundle/vim-fugitive/doc/  " help fugitive 
