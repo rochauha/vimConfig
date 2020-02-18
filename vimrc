@@ -2,21 +2,29 @@ syntax on
 set background=dark
 colorscheme gruvbox 
 
+set nocompatible " go beyond vi
 set number
 filetype plugin indent on
+set title
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
 set showmatch
+set copyindent " copy indentation structure of existing code
+set autoread   " enable reloading file on external changes
+set hidden     " enables to change buffer without saving
+set encoding=utf-8
 set cursorline
 
 
 " To enable C-s and C-q
 silent !stty -ixon
 autocmd VimLeave * : silent !stty -ixon
+
 map <C-s> :w <CR>
 map <C-q> :qa! <CR>
+map <C-x> :bd! <CR>
 
 
 " Termdebug
