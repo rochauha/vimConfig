@@ -48,9 +48,7 @@ set runtimepath^=~/.vim/bundle/auto-pairs/
 helptags ~/.vim/bundle/auto-pairs/doc/  " :help autopairs
 
 
-" Buftabline
-set runtimepath^=~/.vim/bundle/vim-buftabline/
-helptags ~/.vim/bundle/vim-buftabline/doc/  " :help buftabline
+" Switching across buffers
 map <S-n> :bnext <CR>
 map <S-p> :bprev <CR>
 
@@ -58,6 +56,9 @@ map <S-p> :bprev <CR>
 " airline
 set runtimepath^=~/.vim/bundle/vim-airline/
 helptags ~/.vim/bundle/vim-airline/doc/  " :help airline
+let g:airline_powerline_fonts = 1  " requires powerline fonts to be installed
+let g:airline#extensions#tabline#enabled = 1 " enable tabline
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 
 " airline-themes
