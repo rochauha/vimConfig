@@ -1,9 +1,9 @@
-syntax on
+syntax on " enable syntax highlighting
 set background=dark
 colorscheme gruvbox 
 
-set nocompatible " go beyond vi
-set number
+set nocompatible " vim mode only; go beyond vi
+set number " show line numbers
 filetype plugin indent on
 set title
 set tabstop=4
@@ -13,18 +13,36 @@ set autoindent
 set showmatch
 set copyindent " copy indentation structure of existing code
 set autoread   " enable reloading file on external changes
-set hidden     " enables to change buffer without saving
+set hidden     " enable changing buffer without saving
 set encoding=utf-8
-set cursorline
+set cursorline " highlight current line
 
+set ignorecase " ignore case when searching
+set smartcase  " try to be smart about cases when searching
+
+set incsearch  " enable incremental search
+
+" display options
+set showmode
+set showcmd
+set cmdheight=1
+
+" Fixes common backspace problems
+set backspace=indent,eol,start
 
 " To enable C-s and C-q
 silent !stty -ixon
 autocmd VimLeave * : silent !stty -ixon
 
 map <C-s> :w <CR>
+" map <S-q> :q <CR>
 map <C-q> :qa! <CR>
 map <C-x> :bd! <CR>
+
+
+" For terminal within vim
+" map <S-t> :term <CR>
+" tnoremap <ESC><ESC> <C-\><C-N> " Move out from terminal
 
 
 " Termdebug
