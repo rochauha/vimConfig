@@ -18,7 +18,6 @@ set encoding=utf-8
 set cursorline " highlight current line
 
 set ignorecase " ignore case when searching
-set smartcase  " try to be smart about cases when searching
 set incsearch  " enable incremental search
 
 
