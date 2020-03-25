@@ -57,14 +57,14 @@ map <C-g> :Termdebug <CR>
 
 
 " NERDTree
-set runtimepath^=~/.vim/bundle/nerdtree/
-helptags ~/.vim/bundle/nerdtree/doc/  " :help Nerdtree/NERDTree
+set runtimepath^=~/.config/nvim/bundle/nerdtree/
+helptags ~/.config/nvim/bundle/nerdtree/doc/  " :help Nerdtree/NERDTree
 map <C-t> :NERDTreeToggle <CR>
 
 
 " NERDCommenter
-set runtimepath^=~/.vim/bundle/nerdcommenter/
-helptags ~/.vim/bundle/nerdcommenter/doc/  " :help NerdCommenter/NERDCommenter
+set runtimepath^=~/.config/nvim/bundle/nerdcommenter/
+helptags ~/.config/nvim/bundle/nerdcommenter/doc/  " :help NerdCommenter/NERDCommenter
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -85,30 +85,30 @@ let g:NERDToggleCheckAllLines = 1
 
 
 " CtrlP
-set runtimepath^=~/.vim/bundle/ctrlp.vim/
-helptags ~/.vim/bundle/ctrlp.vim/doc/  " :help ctrlp
+set runtimepath^=~/.config/nvim/bundle/ctrlp.vim/
+helptags ~/.config/nvim/bundle/ctrlp.vim/doc/  " :help ctrlp
 
 
 " Auto Pairs
-set runtimepath^=~/.vim/bundle/auto-pairs/
-helptags ~/.vim/bundle/auto-pairs/doc/  " :help autopairs
+set runtimepath^=~/.config/nvim/bundle/auto-pairs/
+helptags ~/.config/nvim/bundle/auto-pairs/doc/  " :help autopairs
 
 
 " any-jump
-set runtimepath^=~/.vim/bundle/any-jump.vim/
-helptags ~/.vim/bundle/auto-pairs/doc/  " :help any-jump
+set runtimepath^=~/.config/nvim/bundle/any-jump.vim/
+helptags ~/.config/nvim/bundle/auto-pairs/doc/  " :help any-jump
 let g:any_jump_search_prefered_engine = 'ag' " requires ag to be installed
 
 
 " airline
-set runtimepath^=~/.vim/bundle/vim-airline/
-helptags ~/.vim/bundle/vim-airline/doc/  " :help airline
+set runtimepath^=~/.config/nvim/bundle/vim-airline/
+helptags ~/.config/nvim/bundle/vim-airline/doc/  " :help airline
 let g:airline_powerline_fonts = 1  " requires powerline fonts to be installed
 let g:airline#extensions#tabline#enabled = 1 " enable tabline
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 
 " airline-themes
-set runtimepath^=~/.vim/bundle/vim-airline-themes/
-helptags ~/.vim/bundle/vim-airline-themes/doc/  " help airline-theme/s
+set runtimepath^=~/.config/nvim/bundle/vim-airline-themes/
+helptags ~/.config/nvim/bundle/vim-airline-themes/doc/  " help airline-theme/s
 let g:airline_theme='base16_gruvbox_dark_hard'
