@@ -2,12 +2,14 @@ syntax on " enable syntax highlighting
 set background=dark
 colorscheme gruvbox 
 
+autocmd VimEnter * clearjumps " clear jumplist at startup
+
 set nocompatible " vim mode only; go beyond vi
 set number " show line numbers
 filetype plugin indent on
 set title
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set autoindent
 set showmatch
@@ -17,6 +19,7 @@ set hidden     " enable changing buffer without saving
 set encoding=utf-8
 set cursorline " highlight current line
 
+set nohlsearch
 set ignorecase " ignore case when searching
 set incsearch  " enable incremental search
 
@@ -46,9 +49,8 @@ map <S-n> :bnext <CR>
 map <S-p> :bprev <CR>
 
 
-" For terminal within vim
-" map <S-t> :term <CR>
-" tnoremap <ESC><ESC> <C-\><C-N> " Move out from terminal
+" For moving out of inbuilt terminal
+tnoremap <ESC><ESC> <C-\><C-N>
 
 
 " Termdebug
