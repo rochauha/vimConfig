@@ -89,6 +89,9 @@ let g:NERDToggleCheckAllLines = 1
 " CtrlP
 set runtimepath^=~/.config/nvim/bundle/ctrlp.vim/
 helptags ~/.config/nvim/bundle/ctrlp.vim/doc/  " :help ctrlp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_use_caching = 1
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 
 
 " Auto Pairs
@@ -98,8 +101,11 @@ helptags ~/.config/nvim/bundle/auto-pairs/doc/  " :help autopairs
 
 " any-jump
 set runtimepath^=~/.config/nvim/bundle/any-jump.vim/
-helptags ~/.config/nvim/bundle/auto-pairs/doc/  " :help any-jump
-let g:any_jump_search_prefered_engine = 'ag' " requires ag to be installed
+helptags ~/.config/nvim/bundle/any-jump.vim/doc/  " :help any-jump
+let g:any_jump_grouping_enabled = 1  " group search results by file
+if executable('ag')
+  let g:any_jump_search_prefered_engine = 'ag' " requires ag to be installed
+endif
 
 
 " airline
