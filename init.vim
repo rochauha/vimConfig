@@ -1,6 +1,11 @@
 syntax on " enable syntax highlighting
 set background=dark
+
+
+" gruvbox scheme
+set runtimepath^=~/.config/nvim/bundle/gruvbox
 colorscheme gruvbox 
+
 
 autocmd VimEnter * clearjumps " clear jumplist at startup
 

@@ -19,3 +19,6 @@
 [submodule "bundle/any-jump.vim"]
 	path = bundle/any-jump.vim
 	url = https://github.com/pechorin/any-jump.vim.git
+[submodule "bundle/gruvbox"]
+	path = bundle/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
