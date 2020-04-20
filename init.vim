@@ -1,16 +1,15 @@
-syntax on " enable syntax highlighting
-set background=dark
+autocmd VimEnter * clearjumps " clear jumplist at startup
 
 
 " gruvbox scheme
 set runtimepath^=~/.config/nvim/bundle/gruvbox
-colorscheme gruvbox 
+set background=dark
+colorscheme gruvbox
 
 
-autocmd VimEnter * clearjumps " clear jumplist at startup
-
-set nocompatible " vim mode only; go beyond vi
-set number " show line numbers
+set nocompatible  " vim mode only; go beyond vi
+syntax on         " enable syntax highlighting
+set number        " show line numbers
 filetype plugin indent on
 set title
 set tabstop=2
@@ -18,15 +17,15 @@ set shiftwidth=2
 set expandtab
 set autoindent
 set showmatch
-set copyindent " copy indentation structure of existing code
-set autoread   " enable reloading file on external changes
-set hidden     " enable changing buffer without saving
+set copyindent    " copy indentation structure of existing code
+set autoread      " enable reloading file on external changes
+set hidden        " enable changing buffer without saving
 set encoding=utf-8
-set cursorline " highlight current line
+set cursorline    " highlight current line
 
 set nohlsearch
-set ignorecase " ignore case when searching
-set incsearch  " enable incremental search
+set ignorecase    " ignore case when searching
+set incsearch     " enable incremental search
 
 
 " display options
@@ -39,12 +38,20 @@ set cmdheight=1
 set backspace=indent,eol,start
 
 
+" Highlight trailing whitespaces in red
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+
 " To enable C-s and C-q
 silent !stty -ixon
 autocmd VimLeave * : silent !stty -ixon
 
 map <C-s> :w <CR>
-" map <S-q> :q <CR>
 map <C-q> :qa! <CR>
 map <C-x> :bd! <CR>
 
@@ -62,6 +69,9 @@ tnoremap <ESC><ESC> <C-\><C-N>
 packadd termdebug
 map <C-g> :Termdebug <CR>
 
+
+
+" PLUGINS
 
 " NERDTree
 set runtimepath^=~/.config/nvim/bundle/nerdtree/
@@ -87,7 +97,7 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
+" Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
 
@@ -119,9 +129,3 @@ helptags ~/.config/nvim/bundle/vim-airline/doc/  " :help airline
 let g:airline_powerline_fonts = 1  " requires powerline fonts to be installed
 let g:airline#extensions#tabline#enabled = 1 " enable tabline
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-
-
-" airline-themes
-set runtimepath^=~/.config/nvim/bundle/vim-airline-themes/
-helptags ~/.config/nvim/bundle/vim-airline-themes/doc/  " help airline-theme/s
-let g:airline_theme='base16_gruvbox_dark_hard'
