@@ -104,9 +104,14 @@ let g:NERDToggleCheckAllLines = 1
 " CtrlP
 set runtimepath^=~/.config/nvim/bundle/ctrlp.vim/
 helptags ~/.config/nvim/bundle/ctrlp.vim/doc/  " :help ctrlp
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_use_caching = 1
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.*
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_max_depth = 20
+let g:ctrlp_max_files = 0  " 0 implies no limit on #files to scan
+let g:ctrlp_working_path_mode = 0 " 0 implies disable this feature
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
 
 
 " Auto Pairs
