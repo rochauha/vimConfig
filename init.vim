@@ -62,7 +62,7 @@ map <S-p> :bprev <CR>
 
 
 " For moving out of inbuilt terminal
-tnoremap <ESC><ESC> <C-\><C-N>
+tnoremap <ESC> <C-\><C-N>
 
 
 " Termdebug
