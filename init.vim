@@ -6,6 +6,12 @@ set runtimepath^=~/.config/nvim/bundle/gruvbox
 set background=dark
 colorscheme gruvbox
 
+if &background ==# 'dark'
+  set notermguicolors
+elseif &background ==# 'light'
+  set termguicolors
+endif
+
 
 set nocompatible  " vim mode only; go beyond vi
 syntax on         " enable syntax highlighting
