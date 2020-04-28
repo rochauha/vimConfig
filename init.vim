@@ -71,6 +71,23 @@ map <S-p> :bprev <CR>
 tnoremap <ESC> <C-\><C-N>
 
 
+" Additional Silver Searcher config to ease life
+if executable('ag')
+  " Requires ag to be installed.
+  " See https://github.com/ggreer/the_silver_searcher for details
+
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Bind <S-f> to grep for word under the cursor
+  nnoremap <S-f> :silent grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+  " Bind <C-f> to grep shortcut
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+  nnoremap <C-f> :Ag<SPACE>
+endif
+
+
 " Termdebug
 packadd termdebug
 map <C-g> :Termdebug <CR>
