@@ -65,7 +65,7 @@ nnoremap <C-q> :qa! <CR>
 nnoremap <C-x> :bd! <CR>
 nnoremap <S-n> :bnext <CR>
 nnoremap <S-p> :bprev <CR>
-inoremap <TAB> <C-n>
+inoremap <S-TAB> <C-n>
 tnoremap <ESC> <C-\><C-n>
 
 
