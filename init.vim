@@ -1,18 +1,9 @@
-autocmd VimEnter * clearjumps " clear jumplist at startup
+"""""""""" EDITOR SETTINGS """"""""""
 
+autocmd VimEnter * clearjumps  " clear jumplist at startup
+set backspace=indent,eol,start " Fixes common backspace problems
 
-" gruvbox scheme
-set runtimepath^=~/.config/nvim/bundle/gruvbox
-set background=dark
-colorscheme gruvbox
-
-if &background ==# 'dark'
-  set notermguicolors
-elseif &background ==# 'light'
-  set termguicolors
-endif
-
-
+set encoding=utf-8
 set nocompatible  " vim mode only; go beyond vi
 syntax on         " enable syntax highlighting
 set number        " show line numbers
@@ -22,26 +13,35 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent
-set showmatch
 set copyindent    " copy indentation structure of existing code
 set autoread      " enable reloading file on external changes
 set hidden        " enable changing buffer without saving
-set encoding=utf-8
 set cursorline    " highlight current line
-
-set nohlsearch
+set nohlsearch    " don't highlight all search results for a pattern
 set ignorecase    " ignore case when searching
 set incsearch     " enable incremental search
-
-
-" display options
 set showmode
 set showcmd
 set cmdheight=1
 
 
-" Fixes common backspace problems
-set backspace=indent,eol,start
+
+"""""""""" COLOR CONFIG """"""""""
+
+" gruvbox scheme
+set runtimepath^=~/.config/nvim/bundle/gruvbox
+set background=dark
+colorscheme gruvbox
+
+if &background ==# 'dark'
+  set notermguicolors
+  let g:gruvbox_contrast_dark='medium'
+  highlight QuickFixLine ctermfg=250
+elseif &background ==# 'light'
+  set termguicolors
+  let g:gruvbox_contrast_light='soft'
+  highlight QuickFixLine guifg=#87005f
+endif
 
 
 " Highlight trailing whitespaces in red
@@ -53,53 +53,51 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 
-" To enable C-s and C-q
+
+"""""""""" KEY BINDING CONFIG """"""""""
+
+" To enable C-s and C-q in terminal
 silent !stty -ixon
 autocmd VimLeave * : silent !stty -ixon
 
-map <C-s> :w <CR>
-map <C-q> :qa! <CR>
-map <C-x> :bd! <CR>
-
-
-" Switching across buffers
-map <S-n> :bnext <CR>
-map <S-p> :bprev <CR>
-
-
-" For moving out of inbuilt terminal
-tnoremap <ESC> <C-\><C-N>
+nnoremap <C-s> :update <CR>
+nnoremap <C-q> :qa! <CR>
+nnoremap <C-x> :bd! <CR>
+nnoremap <S-n> :bnext <CR>
+nnoremap <S-p> :bprev <CR>
+inoremap <TAB> <C-n>
+tnoremap <ESC> <C-\><C-n>
 
 
 " Additional Silver Searcher config to ease life
 if executable('ag')
-  " Requires ag to be installed.
+  " Requires ag to be installed
   " See https://github.com/ggreer/the_silver_searcher for details
 
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Bind <S-f> to grep for word under the cursor
-  nnoremap <S-f> :silent grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+  nnoremap <S-f> :silent! grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
   " Bind <C-f> to grep shortcut
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-  nnoremap <C-f> :Ag<SPACE>
+  command -nargs=+ -complete=file -bar Find silent! grep! <args>|cwindow|redraw!
+  nnoremap <C-f> :Find<SPACE>
 endif
 
 
+
+"""""""""" PLUGIN CONFIG """"""""""
+
 " Termdebug
 packadd termdebug
-map <C-g> :Termdebug <CR>
+nnoremap <C-g> :Termdebug <CR>
 
-
-
-" PLUGINS
 
 " NERDTree
 set runtimepath^=~/.config/nvim/bundle/nerdtree/
 helptags ~/.config/nvim/bundle/nerdtree/doc/  " :help Nerdtree/NERDTree
-map <C-t> :NERDTreeToggle <CR>
+nnoremap <C-t> :NERDTreeToggle <CR>
 
 
 " NERDCommenter
@@ -127,7 +125,17 @@ let g:NERDToggleCheckAllLines = 1
 " CtrlP
 set runtimepath^=~/.config/nvim/bundle/ctrlp.vim/
 helptags ~/.config/nvim/bundle/ctrlp.vim/doc/  " :help ctrlp
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.*
+set wildignorecase
+set wildignore+=*/tmp/*,*/.git/*,*/__pycache__/*,*/log/*,*/.DS_Store
+set wildignore+=*.o,*.so
+set wildignore+=*.tar,*.zip,*.tgz,*.rar,*.7z
+set wildignore+=*.swp
+set wildignore+=*.deb,*.rpm
+set wildignore+=*.pdf,*.epub,*.djvu
+set wildignore+=*.doc.*.docx,*.xls,*.xlsx,*.ppt,*.pptx
+set wildignore+=*.jpg,*.png,*.gif
+set wildignore+=*.flac,*.m4a,*.mp3
+set wildignore+=*.mkv,*.mp4
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 1
