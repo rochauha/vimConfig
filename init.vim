@@ -63,9 +63,8 @@ autocmd VimLeave * : silent !stty -ixon
 nnoremap <C-s> :update <CR>
 nnoremap <C-q> :qa! <CR>
 nnoremap <C-x> :bd! <CR>
-nnoremap <S-n> :bnext <CR>
-nnoremap <S-p> :bprev <CR>
-inoremap <S-TAB> <C-n>
+nnoremap <TAB> :bnext <CR>
+nnoremap <S-TAB> :bprev <CR>
 tnoremap <ESC> <C-\><C-n>
 
 
