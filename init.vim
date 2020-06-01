@@ -68,24 +68,6 @@ nnoremap <S-TAB> :bprev <CR>
 tnoremap <ESC> <C-\><C-n>
 
 
-" Additional Silver Searcher config to ease life
-if executable('ag')
-  " Requires ag to be installed
-  " See https://github.com/ggreer/the_silver_searcher for details
-
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Bind <S-f> to grep for word under the cursor
-  nnoremap <S-f> :silent! grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-  " Bind <C-f> to grep shortcut
-  command -nargs=+ -complete=file -bar Find silent! grep! <args>|cwindow|redraw!
-  nnoremap <C-f> :Find<SPACE>
-endif
-
-
-
 """""""""" PLUGIN CONFIG """"""""""
 
 " Termdebug
@@ -121,41 +103,22 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 
-" CtrlP
-set runtimepath^=~/.config/nvim/bundle/ctrlp.vim/
-helptags ~/.config/nvim/bundle/ctrlp.vim/doc/  " :help ctrlp
-set wildignorecase
-set wildignore+=*/tmp/*,*/.git/*,*/__pycache__/*,*/log/*,*/.DS_Store
-set wildignore+=*.o,*.so
-set wildignore+=*.tar,*.zip,*.tgz,*.rar,*.7z
-set wildignore+=*.swp
-set wildignore+=*.deb,*.rpm
-set wildignore+=*.pdf,*.epub,*.djvu
-set wildignore+=*.doc.*.docx,*.xls,*.xlsx,*.ppt,*.pptx
-set wildignore+=*.jpg,*.png,*.gif
-set wildignore+=*.flac,*.m4a,*.mp3
-set wildignore+=*.mkv,*.mp4
-let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_max_depth = 20
-let g:ctrlp_max_files = 0  " 0 implies no limit on #files to scan
-let g:ctrlp_working_path_mode = 0 " 0 implies disable this feature
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
+" fzf
+" (Requires fzf and ag to be installed to be installed)
+set runtimepath^=~/.config/nvim/bundle/fzf/ " Whole fzf repo, for the base fzf plugin
+set runtimepath^=~/.config/nvim/bundle/fzf.vim/ " For the 'actual' fzf plugin
+helptags ~/.config/nvim/bundle/fzf.vim/doc/  " :help fzf
+nnoremap <C-p> :Files <CR>
+nnoremap <Leader>t :BTags <CR>
+nnoremap <Leader>T :Tags <CR>
+nnoremap <Leader>l :BLines <CR>
+nnoremap <Leader>L :Lines <CR>
+nnoremap <C-f> :Ag <CR>
 
 
 " Auto Pairs
 set runtimepath^=~/.config/nvim/bundle/auto-pairs/
 helptags ~/.config/nvim/bundle/auto-pairs/doc/  " :help autopairs
-
-
-" any-jump
-set runtimepath^=~/.config/nvim/bundle/any-jump.vim/
-helptags ~/.config/nvim/bundle/any-jump.vim/doc/  " :help any-jump
-let g:any_jump_grouping_enabled = 1  " group search results by file
-if executable('ag')
-  let g:any_jump_search_prefered_engine = 'ag' " requires ag to be installed
-endif
 
 
 " airline
