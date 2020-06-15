@@ -23,7 +23,7 @@ set incsearch     " enable incremental search
 set showmode
 set showcmd
 set cmdheight=1
-
+set mouse=nv      " mouse support in normal and visual mode
 
 
 """""""""" COLOR CONFIG """"""""""
@@ -104,7 +104,7 @@ let g:NERDToggleCheckAllLines = 1
 
 
 " fzf
-" (Requires fzf and ag to be installed to be installed)
+" (Requires fzf and rg to be installed)
 set runtimepath^=~/.config/nvim/bundle/fzf/ " Whole fzf repo, for the base fzf plugin
 set runtimepath^=~/.config/nvim/bundle/fzf.vim/ " For the 'actual' fzf plugin
 helptags ~/.config/nvim/bundle/fzf.vim/doc/  " :help fzf
@@ -113,7 +113,7 @@ nnoremap <Leader>t :BTags <CR>
 nnoremap <Leader>T :Tags <CR>
 nnoremap <Leader>l :BLines <CR>
 nnoremap <Leader>L :Lines <CR>
-nnoremap <C-f> :Ag <CR>
+nnoremap <C-f> :Rg<SPACE>
 
 
 " Auto Pairs
