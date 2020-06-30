@@ -108,6 +108,7 @@ let g:NERDToggleCheckAllLines = 1
 set runtimepath^=~/.config/nvim/bundle/fzf/ " Whole fzf repo, for the base fzf plugin
 set runtimepath^=~/.config/nvim/bundle/fzf.vim/ " For the 'actual' fzf plugin
 helptags ~/.config/nvim/bundle/fzf.vim/doc/  " :help fzf
+let g:fzf_height='100%'
 nnoremap <C-p> :Files <CR>
 nnoremap <Leader>t :BTags <CR>
 nnoremap <Leader>T :Tags <CR>
