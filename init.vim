@@ -4,7 +4,8 @@ autocmd VimEnter * clearjumps  " Clear jumplist at startup
 set backspace=indent,eol,start " Fixes common backspace problems
 
 set encoding=utf-8
-syntax on         " Enable syntax highlighting
+set background=dark
+syntax enable     " Enable syntax highlighting
 set number        " Show line numbers
 filetype plugin indent on
 set title
@@ -21,18 +22,25 @@ set ignorecase    " Ignore case when searching
 set incsearch     " Enable incremental search
 set mouse=nv      " Mouse support in normal and visual mode
 
+call plug#begin()
+Plug 'sainnhe/gruvbox-material'
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
+Plug 'vim-airline/vim-airline'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
 
 """""""""" COLOR CONFIG """"""""""
 
-set notermguicolors " Don't use 24bit color
+" Use 24bit color
+if (has("termguicolors"))
+ set termguicolors
+endif
 
-" Gruvbox scheme
-set runtimepath^=~/.config/nvim/bundle/gruvbox
-set background=dark
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='medium'
-highlight QuickFixLine ctermfg=250
-
+colorscheme gruvbox-material
 
 " Highlight trailing whitespaces in red
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -67,14 +75,13 @@ nnoremap <C-g> :Termdebug <CR>
 
 
 " NERDTree
-set runtimepath^=~/.config/nvim/bundle/nerdtree/
-helptags ~/.config/nvim/bundle/nerdtree/doc/  " :help nerdtree
 nnoremap <C-t> :NERDTreeToggle <CR>
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 
 " NERDCommenter
-set runtimepath^=~/.config/nvim/bundle/nerdcommenter/
-helptags ~/.config/nvim/bundle/nerdcommenter/doc/  " :help nerdcommenter
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -94,11 +101,15 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 
+" airline
+" let g:airline_powerline_fonts = 1  " requires powerline fonts to be installed
+let g:airline#extensions#tabline#enabled = 1 " enable tabline
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_theme = 'gruvbox_material'
+
+
 " fzf
 " (Requires fzf and rg to be installed)
-set runtimepath^=~/.config/nvim/bundle/fzf/ " Whole fzf repo, for the base fzf plugin
-set runtimepath^=~/.config/nvim/bundle/fzf.vim/ " For the 'actual' fzf plugin
-helptags ~/.config/nvim/bundle/fzf.vim/doc/  " :help fzf
 let g:fzf_height='100%'
 nnoremap <C-p> :Files <CR>
 nnoremap <Leader>t :BTags <CR>
@@ -106,16 +117,3 @@ nnoremap <Leader>T :Tags <CR>
 nnoremap <Leader>l :BLines <CR>
 nnoremap <Leader>L :Lines <CR>
 nnoremap <C-f> :Rg<SPACE>
-
-
-" Auto Pairs
-set runtimepath^=~/.config/nvim/bundle/auto-pairs/
-helptags ~/.config/nvim/bundle/auto-pairs/doc/  " :help autopairs
-
-
-" airline
-set runtimepath^=~/.config/nvim/bundle/vim-airline/
-helptags ~/.config/nvim/bundle/vim-airline/doc/  " :help airline
-" let g:airline_powerline_fonts = 1  " requires powerline fonts to be installed
-let g:airline#extensions#tabline#enabled = 1 " enable tabline
-let g:airline#extensions#tabline#formatter = 'unique_tail'
