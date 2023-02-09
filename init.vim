@@ -22,6 +22,9 @@ set ignorecase    " Ignore case when searching
 set incsearch     " Enable incremental search
 set mouse=nv      " Mouse support in normal and visual mode
 
+set wrap          " Enable soft wrapping text at end of screen
+set linebreak     " Wrap at a whitespace only
+
 call plug#begin()
 Plug 'sainnhe/gruvbox-material'
 Plug 'preservim/nerdtree'
