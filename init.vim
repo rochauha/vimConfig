@@ -12,6 +12,7 @@ set title
 set tabstop=2     " Set width of <TAB> character to 2 spaces
 set expandtab     " Expand tabs to spaces
 set shiftwidth=2  " Set 1 level of indent = 2 spaces
+set shiftround    " Round indent to multiple of 'shiftwidth' when indenting with > and < manually
 set autoindent    " Apply indentation of current line to next line
 set copyindent    " Copy indentation structure of existing code
 set autoread      " Enable reloading file on external changes
@@ -33,6 +34,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'rhysd/vim-llvm'
 call plug#end()
 
 
