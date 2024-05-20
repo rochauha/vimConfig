@@ -8,19 +8,24 @@ set background=dark
 syntax enable     " Enable syntax highlighting
 set number        " Show line numbers
 filetype plugin indent on
-set title
+set title          " set the title of window to the value of the titlestring, leave titlestring default
+
+" Tab config
 set tabstop=2     " Set width of <TAB> character to 2 spaces
 set expandtab     " Expand tabs to spaces
 set shiftwidth=2  " Set 1 level of indent = 2 spaces
 set shiftround    " Round indent to multiple of 'shiftwidth' when indenting with > and < manually
 set autoindent    " Apply indentation of current line to next line
 set copyindent    " Copy indentation structure of existing code
-set autoread      " Enable reloading file on external changes
-set hidden        " Enable changing buffer without saving
-set cursorline    " Highlight current line
+
+" Search config
 set nohlsearch    " Don't highlight all search results for a pattern
 set ignorecase    " Ignore case when searching
 set incsearch     " Enable incremental search
+
+set autoread      " Enable reloading file on external changes
+set hidden        " Enable changing buffer without saving
+set cursorline    " Highlight current line
 set mouse=nv      " Mouse support in normal and visual mode
 
 set wrap          " Enable soft wrapping text at end of screen
