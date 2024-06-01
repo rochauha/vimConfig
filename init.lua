@@ -136,4 +136,15 @@ vim.keymap.set('n', '<S-h>', function() vim.lsp.buf.hover() end, opts)
 vim.keymap.set('n', '<S-r>', function() vim.lsp.buf.references() end, opts)
 
 local lspconfig = require('lspconfig')
-lspconfig.clangd.setup{} -- clangd for C/C++; requires clangd installed
+lspconfig.clangd.setup{
+  cmd = {
+    "clangd",
+    "--header-insertion=never",
+    "--limit-references=200",
+    "--limit-results=50",
+    "--background-index",
+    "--background-index-priority=normal",
+    "-j=10",
+    "--pch-storage=memory"
+  }
+} -- clangd for C/C++; requires clangd installed
