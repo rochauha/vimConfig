@@ -132,3 +132,12 @@ vim.keymap.set("n", "<Leader>T", ":Tags <CR>")
 vim.keymap.set("n", "<Leader>l", ":BLines <CR>")
 vim.keymap.set("n", "<Leader>L", ":Lines <CR>")
 vim.keymap.set("n", "<C-f>", ":Rg<SPACE>")
+
+
+-- LSP stuff
+vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
+vim.keymap.set('n', '<S-h>', function() vim.lsp.buf.hover() end, opts)
+vim.keymap.set('n', '<S-r>', function() vim.lsp.buf.references() end, opts)
+
+local lspconfig = require('lspconfig')
+lspconfig.clangd.setup{} -- clangd for C/C++; requires clangd installed
