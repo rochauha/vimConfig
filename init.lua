@@ -127,10 +127,6 @@ vim.g.airline_theme = 'gruvbox_material'
 -- (Requires fzf and rg to be installed)
 vim.g.fzf_height = "100%"
 vim.keymap.set("n", "<C-p>", ":Files <CR>")
-vim.keymap.set("n", "<Leader>t", ":BTags <CR>")
-vim.keymap.set("n", "<Leader>T", ":Tags <CR>")
-vim.keymap.set("n", "<Leader>l", ":BLines <CR>")
-vim.keymap.set("n", "<Leader>L", ":Lines <CR>")
 vim.keymap.set("n", "<C-f>", ":Rg<SPACE>")
 
 
