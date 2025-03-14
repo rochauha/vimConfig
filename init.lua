@@ -42,8 +42,8 @@ vim.api.nvim_exec(
       Plug 'jiangmiao/auto-pairs'
       Plug 'junegunn/fzf'
       Plug 'junegunn/fzf.vim'
-      Plug 'rhysd/vim-llvm'
       Plug 'neovim/nvim-lspconfig'
+      Plug 'sheerun/vim-polyglot'
     call plug#end()
   ]], true
 )
