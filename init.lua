@@ -92,9 +92,9 @@ vim.keymap.set("n", "<C-t>", ":NERDTreeToggle <CR>")
 
 
 -- airline
--- let g:airline_powerline_fonts = 1  " requires powerline fonts to be installed
-vim.cmd("let g:airline#extensions#tabline#enabled = 1") -- enable tabline
-vim.cmd("let g:airline#extensions#tabline#formatter = 'unique_tail'")
+-- vim.g["airline_powerline_fonts"] = 1 -- requires powerline fonts to be installed
+vim.g["airline#extensions#tabline#enabled"] = 1 -- enable tabline
+vim.g["airline#extensions#tabline#formatter"] = "unique_tail"
 vim.g.airline_theme = 'gruvbox_material'
 
 
