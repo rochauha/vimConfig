@@ -1,11 +1,9 @@
 -- ---------- EDITOR SETTINGS ----------
 
-vim.cmd("autocmd VimEnter * clearjumps") -- Clear jumplist at startup
-vim.cmd("filetype plugin indent on")
-vim.cmd("syntax enable")     -- Enable syntax highlighting
+vim.api.nvim_create_autocmd("VimEnter", {
+  command = "clearjumps",
+}) -- Clear jumplist at startup
 
-vim.opt.backspace  = "indent,eol,start" -- Fixes common backspace problems
-vim.opt.encoding   = "utf-8"
 vim.opt.title      = true   -- Set title of window to the value of the titlestring, leave titlestring default
 vim.opt.number     = true   -- Show line numbers
 
@@ -23,7 +21,6 @@ vim.opt.ignorecase = true   -- Ignore case when searching
 vim.opt.incsearch  = true   -- Enable incremental search
 
 vim.opt.autoread   = true   -- Enable reloading file on external changes
-vim.opt.hidden     = true   -- Enable changing buffer without saving
 vim.opt.cursorline = true   -- Highlight current line
 vim.opt.mouse      = "nv"   -- Mouse support in normal and visual mode
 
