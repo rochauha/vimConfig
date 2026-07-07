@@ -29,20 +29,18 @@ vim.opt.wrap       = false   -- Disable soft wrapping text at end of screen
 
 
 -- Install plugins
-vim.api.nvim_exec(
-  [[
-    call plug#begin()
-      Plug 'sainnhe/gruvbox-material'
-      Plug 'preservim/nerdtree'
-      Plug 'preservim/nerdcommenter'
-      Plug 'vim-airline/vim-airline'
-      Plug 'jiangmiao/auto-pairs'
-      Plug 'junegunn/fzf'
-      Plug 'junegunn/fzf.vim'
-      Plug 'neovim/nvim-lspconfig'
-      Plug 'sheerun/vim-polyglot'
-    call plug#end()
-  ]], true
+vim.pack.add({
+  { src = "https://github.com/sainnhe/gruvbox-material", name = "gruvbox-material" },
+  { src = "https://github.com/preservim/nerdtree", name = "nerdtree" },
+  { src = "https://github.com/preservim/nerdcommenter", name = "nerdcommenter" },
+  { src = "https://github.com/vim-airline/vim-airline", name = "vim-airline" },
+  { src = "https://github.com/jiangmiao/auto-pairs", name = "auto-pairs" },
+  { src = "https://github.com/junegunn/fzf", name = "fzf" },
+  { src = "https://github.com/junegunn/fzf.vim", name = "fzf.vim" },
+  { src = "https://github.com/neovim/nvim-lspconfig", name = "nvim-lspconfig" },
+  { src = "https://github.com/sheerun/vim-polyglot", name = "vim-polyglot" },
+  },
+  { load = true } -- Load plugins immediately because the config below uses their commands and modules.
 )
 
 -- ---------- COLOR CONFIG ----------
