@@ -32,7 +32,6 @@ vim.opt.wrap       = false   -- Disable soft wrapping text at end of screen
 vim.pack.add({
   { src = "https://github.com/sainnhe/gruvbox-material", name = "gruvbox-material" },
   { src = "https://github.com/preservim/nerdtree", name = "nerdtree" },
-  { src = "https://github.com/preservim/nerdcommenter", name = "nerdcommenter" },
   { src = "https://github.com/vim-airline/vim-airline", name = "vim-airline" },
   { src = "https://github.com/jiangmiao/auto-pairs", name = "auto-pairs" },
   { src = "https://github.com/junegunn/fzf", name = "fzf" },
@@ -72,6 +71,11 @@ vim.keymap.set("n", "<TAB>", "<cmd>:bnext <CR>")
 vim.keymap.set("n", "<S-TAB>", "<cmd>:bprev <CR>")
 vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 
+-- Commenting
+-- remap = true lets these compatibility mappings invoke Neovim built-in gc/gcc mappings.
+vim.keymap.set("n", "<leader>c<Space>", "gcc", { remap = true, desc = "Toggle comment line" })
+vim.keymap.set("v", "<leader>c<Space>", "gc", { remap = true, desc = "Toggle comment selection" })
+
 
 -- ---------- PLUGIN CONFIG ----------
 
@@ -85,26 +89,6 @@ vim.keymap.set("n", "<C-t>", ":NERDTreeToggle <CR>")
 
 -- " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 -- autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-
--- NERDCommenter
--- Add spaces after comment delimiters by default
-vim.g.NERDSpaceDelims = 1
-
--- Use compact syntax for prettified multi-line comments
-vim.g.NERDCompactSexyComs = true
-
--- Align line-wise comment delimiters flush left instead of following code indentation
-vim.g.NERDDefaultAlign = "left"
-
--- Allow commenting and inverting empty lines (useful when commenting a region)
-vim.g.NERDCommentEmptyLines = true
-
--- Enable trimming of trailing whitespace when uncommenting
-vim.g.NERDTrimTrailingWhitespace = true
-
--- Enable NERDCommenterToggle to check all selected lines is commented or not
-vim.g.NERDToggleCheckAllLines = true
 
 
 -- airline
