@@ -29,22 +29,23 @@ vim.opt.wrap       = false   -- Disable soft wrapping text at end of screen
 
 
 -- Install plugins
-vim.pack.add({
-  { src = "https://github.com/sainnhe/gruvbox-material", name = "gruvbox-material" },
-  { src = "https://github.com/preservim/nerdtree", name = "nerdtree" },
-  { src = "https://github.com/vim-airline/vim-airline", name = "vim-airline" },
-  { src = "https://github.com/jiangmiao/auto-pairs", name = "auto-pairs" },
-  { src = "https://github.com/junegunn/fzf", name = "fzf" },
-  { src = "https://github.com/junegunn/fzf.vim", name = "fzf.vim" },
-  { src = "https://github.com/neovim/nvim-lspconfig", name = "nvim-lspconfig" },
-  { src = "https://github.com/sheerun/vim-polyglot", name = "vim-polyglot" },
+vim.pack.add(
+  {
+    { src = "https://github.com/sainnhe/gruvbox-material", name = "gruvbox-material" },
+    { src = "https://github.com/preservim/nerdtree", name = "nerdtree" },
+    { src = "https://github.com/vim-airline/vim-airline", name = "vim-airline" },
+    { src = "https://github.com/jiangmiao/auto-pairs", name = "auto-pairs" },
+    { src = "https://github.com/junegunn/fzf", name = "fzf" },
+    { src = "https://github.com/junegunn/fzf.vim", name = "fzf.vim" },
+    { src = "https://github.com/neovim/nvim-lspconfig", name = "nvim-lspconfig" },
+    { src = "https://github.com/sheerun/vim-polyglot", name = "vim-polyglot" },
   },
   { load = true } -- Load plugins immediately because the config below uses their commands and modules.
 )
 
 -- ---------- COLOR CONFIG ----------
 
--- Use 24bit color
+-- Use 24-bit RGB colors in the terminal
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("gruvbox-material")
 
@@ -95,7 +96,7 @@ vim.keymap.set("n", "<C-t>", "<cmd>NERDTreeToggle<CR>")
 -- vim.g["airline_powerline_fonts"] = 1 -- requires powerline fonts to be installed
 vim.g["airline#extensions#tabline#enabled"] = 1 -- enable tabline
 vim.g["airline#extensions#tabline#formatter"] = "unique_tail"
-vim.g.airline_theme = 'gruvbox_material'
+vim.g.airline_theme = "gruvbox_material"
 
 
 -- fzf
