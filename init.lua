@@ -46,12 +46,8 @@ vim.pack.add({
 -- ---------- COLOR CONFIG ----------
 
 -- Use 24bit color
--- the vim function returns 0 or 1, therefore compare to the number 0 or 1
-if (vim.fn.has "termguicolors" == 1) then
-  vim.opt.termguicolors = true
-end
-
-vim.cmd("colorscheme gruvbox-material")
+vim.opt.termguicolors = true
+vim.cmd.colorscheme("gruvbox-material")
 
 -- Highlight trailing whitespaces in red
 vim.cmd("highlight ExtraWhitespace ctermbg=red guibg=red")
