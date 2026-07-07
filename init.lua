@@ -64,11 +64,11 @@ vim.cmd("silent !stty -ixon")
 vim.cmd("autocmd VimLeave * : silent !stty -ixon")
 
 -- Common shortcuts
-vim.keymap.set("n", "<C-s>", "<cmd>:update <CR>")
-vim.keymap.set("n", "<C-q>", "<cmd>:qa! <CR>")
-vim.keymap.set("n", "<C-x>", "<cmd>:bd! <CR>")
-vim.keymap.set("n", "<TAB>", "<cmd>:bnext <CR>")
-vim.keymap.set("n", "<S-TAB>", "<cmd>:bprev <CR>")
+vim.keymap.set("n", "<C-s>", "<cmd>update<CR>")
+vim.keymap.set("n", "<C-q>", "<cmd>qa!<CR>")
+vim.keymap.set("n", "<C-x>", "<cmd>bd!<CR>")
+vim.keymap.set("n", "<TAB>", "<cmd>bnext<CR>")
+vim.keymap.set("n", "<S-TAB>", "<cmd>bprev<CR>")
 vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 
 -- Commenting
@@ -81,11 +81,11 @@ vim.keymap.set("v", "<leader>c<Space>", "gc", { remap = true, desc = "Toggle com
 
 -- Termdebug
 vim.cmd("packadd termdebug")
-vim.keymap.set("n", "<C-g>", ":Termdebug <CR>")
+vim.keymap.set("n", "<C-g>", "<cmd>Termdebug<CR>")
 
 
 -- NERDTree
-vim.keymap.set("n", "<C-t>", ":NERDTreeToggle <CR>")
+vim.keymap.set("n", "<C-t>", "<cmd>NERDTreeToggle<CR>")
 
 -- " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 -- autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
@@ -101,7 +101,7 @@ vim.g.airline_theme = 'gruvbox_material'
 -- fzf
 -- (Requires fzf and rg to be installed)
 vim.g.fzf_height = "100%"
-vim.keymap.set("n", "<C-p>", ":Files <CR>")
+vim.keymap.set("n", "<C-p>", "<cmd>Files<CR>")
 vim.keymap.set("n", "<C-f>", ":Rg<SPACE>")
 
 
