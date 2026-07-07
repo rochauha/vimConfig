@@ -49,13 +49,30 @@ vim.pack.add(
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("gruvbox-material")
 
--- Highlight trailing whitespaces in red
-vim.cmd("highlight ExtraWhitespace ctermbg=red guibg=red")
-vim.cmd("match ExtraWhitespace /\\s\\+$/")
-vim.cmd("autocmd BufWinEnter * match ExtraWhitespace /\\s\\+$/")
-vim.cmd("autocmd InsertEnter * match ExtraWhitespace /\\s\\+\\%#\\@<!$/")
-vim.cmd("autocmd InsertLeave * match ExtraWhitespace /\\s\\+$/")
-vim.cmd("autocmd BufWinLeave * call clearmatches()")
+
+-- Highlight trailing whitespace in red
+vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = "red" })
+
+local trailing_whitespace = vim.api.nvim_create_augroup("TrailingWhitespace", {
+  clear = true,
+})
+
+vim.cmd([[match ExtraWhitespace /\s\+$/]])
+
+vim.api.nvim_create_autocmd({ "BufWinEnter", "InsertLeave" }, {
+  group = trailing_whitespace,
+  command = [[match ExtraWhitespace /\s\+$/]],
+})
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+  group = trailing_whitespace,
+  command = [[match ExtraWhitespace /\s\+\%#\@<!$/]],
+})
+
+vim.api.nvim_create_autocmd("BufWinLeave", {
+  group = trailing_whitespace,
+  command = "call clearmatches()",
+})
 
 
 -- ---------- KEY BINDING CONFIG ----------
