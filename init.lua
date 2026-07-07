@@ -60,9 +60,20 @@ vim.cmd("autocmd BufWinLeave * call clearmatches()")
 
 -- ---------- KEY BINDING CONFIG ----------
 
--- To enable C-s and C-q in terminal
-vim.cmd("silent !stty -ixon")
-vim.cmd("autocmd VimLeave * : silent !stty -ixon")
+-- To enable <C-s> and <C-q> in terminal
+-- Temporarily disable terminal flow control so <C-s> and <C-q> reach Neovim.
+-- Restore the exact previous terminal settings when Neovim exits.
+local initial_terminal_settings = vim.fn.system("stty -g"):gsub("%s+$", "")
+
+if vim.v.shell_error == 0 and initial_terminal_settings ~= "" then
+  vim.fn.system("stty -ixon")
+
+  vim.api.nvim_create_autocmd("VimLeave", {
+    callback = function()
+      vim.fn.system("stty " .. initial_terminal_settings)
+    end,
+  })
+end
 
 -- Common shortcuts
 vim.keymap.set("n", "<C-s>", "<cmd>update<CR>")
