@@ -156,4 +156,23 @@ vim.lsp.config("clangd", {
   },
 }) -- clangd for C/C++; requires clangd installed
 
-vim.lsp.enable("clangd")
+vim.lsp.config("rust_analyzer", {
+  cmd = { "rust-analyzer" },
+  filetypes = { "rust" },
+  root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+}) -- rust-analyzer for Rust; requires rust-analyzer installed
+
+vim.lsp.config("pyright", {
+  cmd = { "pyright-langserver", "--stdio" },
+  filetypes = { "python" },
+  root_markers = {
+    "pyrightconfig.json",
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    ".git",
+  },
+}) -- pyright for Python; requires pyright-langserver installed
+
+vim.lsp.enable({ "clangd", "rust_analyzer", "pyright" })
