@@ -37,7 +37,6 @@ vim.pack.add(
     { src = "https://github.com/jiangmiao/auto-pairs", name = "auto-pairs" },
     { src = "https://github.com/junegunn/fzf", name = "fzf" },
     { src = "https://github.com/junegunn/fzf.vim", name = "fzf.vim" },
-    { src = "https://github.com/neovim/nvim-lspconfig", name = "nvim-lspconfig" },
     { src = "https://github.com/sheerun/vim-polyglot", name = "vim-polyglot" },
   },
   { load = true } -- Load plugins immediately because the config below uses their commands and modules.
@@ -132,20 +131,29 @@ vim.keymap.set("n", "<C-f>", ":Rg<SPACE>")
 
 
 -- LSP stuff
-vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
-vim.keymap.set('n', '<S-h>', function() vim.lsp.buf.hover() end, opts)
-vim.keymap.set('n', '<S-r>', function() vim.lsp.buf.references() end, opts)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "<S-h>", vim.lsp.buf.hover, { desc = "Show hover" })
+vim.keymap.set("n", "<S-r>", vim.lsp.buf.references, { desc = "Show references" })
 
-local lspconfig = require('lspconfig')
-lspconfig.clangd.setup{
+vim.lsp.config("clangd", {
   cmd = {
     "clangd",
     "--header-insertion=never",
-    "--limit-references=200",
-    "--limit-results=50",
     "--background-index",
-    "--background-index-priority=normal",
+    "--background-index-priority=high",
     "-j=10",
-    "--pch-storage=memory"
-  }
-} -- clangd for C/C++; requires clangd installed
+    "--pch-storage=memory",
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+  root_markers = {
+    ".clangd",
+    ".clang-tidy",
+    ".clang-format",
+    "compile_commands.json",
+    "compile_flags.txt",
+    "configure.ac",
+    ".git",
+  },
+}) -- clangd for C/C++; requires clangd installed
+
+vim.lsp.enable("clangd")
