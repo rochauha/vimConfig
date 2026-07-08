@@ -108,7 +108,7 @@ vim.keymap.set("v", "<leader>c<Space>", "gc", { remap = true, desc = "Toggle com
 -- ---------- PLUGIN CONFIG ----------
 
 -- Termdebug
-vim.cmd.packadd("termdebug")
+vim.cmd("packadd! termdebug")
 vim.keymap.set("n", "<C-g>", "<cmd>Termdebug<CR>")
 
 
