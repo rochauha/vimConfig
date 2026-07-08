@@ -22,6 +22,7 @@ vim.opt.incsearch  = true   -- Enable incremental search
 
 vim.opt.autoread   = true   -- Enable reloading file on external changes
 vim.opt.cursorline = true   -- Highlight current line
+vim.opt.signcolumn = "yes"  -- Keep gutter width stable for signs
 vim.opt.mouse      = "nv"   -- Mouse support in normal and visual mode
 
 vim.opt.wrap       = false   -- Disable soft wrapping text at end of screen
@@ -35,6 +36,7 @@ vim.pack.add(
     { src = "https://github.com/preservim/nerdtree", name = "nerdtree" },
     { src = "https://github.com/vim-airline/vim-airline", name = "vim-airline" },
     { src = "https://github.com/jiangmiao/auto-pairs", name = "auto-pairs" },
+    { src = "https://github.com/lewis6991/gitsigns.nvim", name = "gitsigns.nvim" },
     { src = "https://github.com/ibhagwan/fzf-lua", name = "fzf-lua" },
     { src = "https://github.com/sheerun/vim-polyglot", name = "vim-polyglot" },
   },
@@ -109,6 +111,10 @@ vim.keymap.set("v", "<leader>c<Space>", "gc", { remap = true, desc = "Toggle com
 -- Termdebug
 vim.cmd("packadd! termdebug")
 vim.keymap.set("n", "<C-g>", "<cmd>Termdebug<CR>")
+
+
+-- Git signs
+require("gitsigns").setup()
 
 
 -- NERDTree
