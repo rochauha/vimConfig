@@ -35,8 +35,7 @@ vim.pack.add(
     { src = "https://github.com/preservim/nerdtree", name = "nerdtree" },
     { src = "https://github.com/vim-airline/vim-airline", name = "vim-airline" },
     { src = "https://github.com/jiangmiao/auto-pairs", name = "auto-pairs" },
-    { src = "https://github.com/junegunn/fzf", name = "fzf" },
-    { src = "https://github.com/junegunn/fzf.vim", name = "fzf.vim" },
+    { src = "https://github.com/ibhagwan/fzf-lua", name = "fzf-lua" },
     { src = "https://github.com/sheerun/vim-polyglot", name = "vim-polyglot" },
   },
   { load = true } -- Load plugins immediately because the config below uses their commands and modules.
@@ -123,11 +122,34 @@ vim.g["airline#extensions#tabline#formatter"] = "unique_tail"
 vim.g.airline_theme = "gruvbox_material"
 
 
--- fzf
--- (Requires fzf and rg to be installed)
-vim.g.fzf_height = "100%"
-vim.keymap.set("n", "<C-p>", "<cmd>Files<CR>")
-vim.keymap.set("n", "<C-f>", ":Rg<SPACE>")
+-- fzf-lua
+-- Uses the fzf for matching and rg for text search.
+-- Requires fzf and rg installed.
+require("fzf-lua").setup({
+  winopts = {
+    -- Values from 0.0 to 1.0 are fractions of the editor size.
+    height = 1.0,
+    width = 1.0,
+  },
+  defaults = {
+    file_icons = false,
+    git_icons = false,
+  },
+  files = {
+    previewer = "builtin",
+  },
+  grep = {
+    previewer = "builtin",
+  },
+})
+
+vim.keymap.set("n", "<C-p>", function()
+  require("fzf-lua").files()
+end, { desc = "Find files" })
+
+vim.keymap.set("n", "<C-f>", function()
+  require("fzf-lua").live_grep()
+end, { desc = "Search text" })
 
 
 -- LSP stuff
