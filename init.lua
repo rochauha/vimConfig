@@ -182,7 +182,8 @@ vim.keymap.set("n", "<C-f>", function()
 end, { desc = "Search text" })
 
 
--- LSP stuff
+-- ----------- LSP CONFIG ------------
+
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "<S-h>", vim.lsp.buf.hover, { desc = "Show hover" })
 vim.keymap.set("n", "<S-r>", vim.lsp.buf.references, { desc = "Show references" })
