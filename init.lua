@@ -32,7 +32,7 @@ vim.opt.wrap       = false   -- Disable soft wrapping text at end of screen
 -- Install plugins
 vim.pack.add({
   { src = "https://github.com/sainnhe/gruvbox-material", name = "gruvbox-material" },
-  { src = "https://github.com/preservim/nerdtree", name = "nerdtree" },
+  { src = "https://github.com/nvim-tree/nvim-tree.lua", name = "nvim-tree.lua" },
   { src = "https://github.com/vim-airline/vim-airline", name = "vim-airline" },
   { src = "https://github.com/jiangmiao/auto-pairs", name = "auto-pairs" },
   { src = "https://github.com/lewis6991/gitsigns.nvim", name = "gitsigns.nvim" },
@@ -110,8 +110,28 @@ vim.cmd("packadd! termdebug")
 vim.keymap.set("n", "<C-g>", "<cmd>Termdebug<CR>")
 
 
--- NERDTree
-vim.keymap.set("n", "<C-t>", "<cmd>NERDTreeToggle<CR>")
+-- nvim-tree
+-- Disable netrw so nvim-tree handles directory browsing.
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require("nvim-tree").setup({
+  git = {
+    timeout = 2000,
+  },
+  renderer = {
+    icons = {
+      show = {
+        file = false,
+        folder = false,
+        git = true,
+        folder_arrow = false,
+      },
+    },
+  },
+})
+
+vim.keymap.set("n", "<C-t>", "<cmd>NvimTreeToggle<CR>")
 
 
 -- airline
