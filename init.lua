@@ -48,6 +48,13 @@ vim.opt.termguicolors = true
 vim.cmd.colorscheme("gruvbox-material")
 
 
+-- vim-polyglot ships MLIR syntax, but its legacy ftdetect misses .mlir files.
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.mlir",
+  command = "setfiletype mlir",
+})
+
+
 -- Highlight trailing whitespace in red
 vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = "red" })
 
