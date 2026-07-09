@@ -36,6 +36,7 @@ vim.pack.add({
   { src = "https://github.com/vim-airline/vim-airline", name = "vim-airline" },
   { src = "https://github.com/jiangmiao/auto-pairs", name = "auto-pairs" },
   { src = "https://github.com/lewis6991/gitsigns.nvim", name = "gitsigns.nvim" },
+  { src = "https://github.com/sakhnik/nvim-gdb", name = "nvim-gdb" },
   { src = "https://github.com/ibhagwan/fzf-lua", name = "fzf-lua" },
   { src = "https://github.com/sheerun/vim-polyglot", name = "vim-polyglot" },
 })
@@ -105,9 +106,12 @@ vim.keymap.set("v", "<leader>c<Space>", "gc", { remap = true, desc = "Toggle com
 
 -- ---------- PLUGIN CONFIG ----------
 
--- Termdebug
-vim.cmd("packadd! termdebug")
-vim.keymap.set("n", "<C-g>", "<cmd>Termdebug<CR>")
+-- nvim-gdb
+-- Put the debugger terminal on the left and keep source code on the right.
+vim.g.nvimgdb_config_override = {
+  termwin_command = "aboveleft vnew",
+  codewin_command = "belowright vnew",
+}
 
 
 -- nvim-tree
