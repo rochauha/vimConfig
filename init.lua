@@ -225,6 +225,21 @@ vim.lsp.config("pyright", {
     "requirements.txt",
     ".git",
   },
+  settings = {
+    python = {
+      analysis = {
+        diagnosticMode = "openFilesOnly",
+        autoImportCompletions = false,    -- Avoid extra completion work for symbols that are not already imported.
+        autoSearchPaths = true,           -- Infer common import roots like src/ without per-project config files.
+        useLibraryCodeForTypes = true,    -- Keep goto/hover useful for installed packages when type stubs are missing.
+        exclude = {
+          "**/node_modules",
+          "**/__pycache__",
+          "**/.*", -- Exclude dot directories such as .git and .venv from workspace scanning.
+        },
+      },
+    },
+  },
 }) -- pyright for Python; requires pyright-langserver installed
 
 vim.lsp.enable({ "clangd", "rust_analyzer", "pyright" })
