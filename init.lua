@@ -1,5 +1,7 @@
 -- ---------- EDITOR SETTINGS ----------
 
+vim.g.mapleader = "\\" -- Set leader explicitly to the default so <leader> mappings are unambiguous.
+
 vim.api.nvim_create_autocmd("VimEnter", {
   command = "clearjumps",
 }) -- Clear jumplist at startup
