@@ -113,6 +113,19 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>c<Space>", "gcc", { remap = true, desc = "Toggle comment line" })
 vim.keymap.set("v", "<leader>c<Space>", "gc", { remap = true, desc = "Toggle comment selection" })
 
+-- Clipboard
+-- Copy (y), cut/change (c), and paste (p) use the system clipboard so they interop
+-- with other apps. Pure "deletes" (d, x) stay on Vim's own registers, so
+-- removing text away never overwrites what is on the clipboard.
+-- Note: Now every change (ciw, cc, ...) writes to the clipboard, since I use c for cut as well;
+-- Use d/x when you want to remove text without disturbing the clipboard.
+vim.keymap.set({ "n", "v" }, "y", '"+y')
+vim.keymap.set("n", "Y", '"+y$') -- Match Neovim's default Y = yank to end of line
+vim.keymap.set({ "n", "v" }, "c", '"+c')
+vim.keymap.set("n", "C", '"+C')  -- Match Vim's default C = change to end of line
+vim.keymap.set({ "n", "v" }, "p", '"+p')
+vim.keymap.set({ "n", "v" }, "P", '"+P')
+
 
 -- ---------- PLUGIN CONFIG ----------
 
