@@ -83,6 +83,14 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 
+-- Briefly highlight yanked text as visual confirmation of what was copied.
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.hl.on_yank()
+  end,
+})
+
+
 -- ---------- KEY BINDING CONFIG ----------
 
 -- To enable <C-s> and <C-q> in terminal
