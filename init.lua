@@ -55,28 +55,19 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 
--- Highlight trailing whitespace in red
-vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = "red" })
+-- Show trailing whitespace and tabs as markers via listchars.
+vim.opt.list = true
+vim.opt.listchars = { trail = "·", tab = "» " }
 
-local trailing_whitespace = vim.api.nvim_create_augroup("TrailingWhitespace", {
-  clear = true,
-})
-
-vim.cmd([[match ExtraWhitespace /\s\+$/]])
-
-vim.api.nvim_create_autocmd({ "BufWinEnter", "InsertLeave" }, {
-  group = trailing_whitespace,
-  command = [[match ExtraWhitespace /\s\+$/]],
-})
-
+-- Hide the markers while typing, restore them when leaving insert mode.
+local listchars_group = vim.api.nvim_create_augroup("ListcharsInsert", { clear = true })
 vim.api.nvim_create_autocmd("InsertEnter", {
-  group = trailing_whitespace,
-  command = [[match ExtraWhitespace /\s\+\%#\@<!$/]],
+  group = listchars_group,
+  command = "set nolist",
 })
-
-vim.api.nvim_create_autocmd("BufWinLeave", {
-  group = trailing_whitespace,
-  command = "call clearmatches()",
+vim.api.nvim_create_autocmd("InsertLeave", {
+  group = listchars_group,
+  command = "set list",
 })
 
 
