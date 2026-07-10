@@ -244,3 +244,24 @@ vim.lsp.config("pyright", {
 }) -- pyright for Python; requires pyright-langserver installed
 
 vim.lsp.enable({ "clangd", "rust_analyzer", "pyright" })
+
+
+-- Temporary workaround to remove unused packages. Should be gone as vim.pack matures
+local function pack_clean()
+  local unused = {}
+  for _, plugin in ipairs(vim.pack.get()) do
+    if not plugin.active then
+      table.insert(unused, plugin.spec.name)
+    end
+  end
+  if #unused == 0 then
+    print("No unused plugins.")
+    return
+  end
+  local choice = vim.fn.confirm("Remove unused plugins: " .. table.concat(unused, ", ") .. "?", "&Yes\n&No", 2)
+  if choice == 1 then
+    vim.pack.del(unused)
+  end
+end
+
+vim.keymap.set("n", "<leader>pc", pack_clean)
