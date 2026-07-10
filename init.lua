@@ -20,12 +20,21 @@ vim.opt.copyindent = true   -- Copy indentation structure of existing code
 -- Search config
 vim.opt.hlsearch   = false  -- Don't highlight all search results for a pattern
 vim.opt.ignorecase = true   -- Ignore case when searching
+vim.opt.smartcase  = true   -- ...but be case-sensitive if the search contains an uppercase letter
 vim.opt.incsearch  = true   -- Enable incremental search
 
 vim.opt.autoread   = true   -- Enable reloading file on external changes
 vim.opt.cursorline = true   -- Highlight current line
-vim.opt.signcolumn = "yes"  -- Keep gutter width stable for signs
+vim.opt.signcolumn = "yes"  -- Always draw signcolumn. Used by gitsigns.
 vim.opt.mouse      = "nv"   -- Mouse support in normal and visual mode
+vim.opt.undofile   = true   -- Persist undo history to disk so it survives closing a file
+vim.opt.scrolloff  = 8      -- Keep 8 lines above and below the cursor while scrolling
+
+-- Split config
+-- New window always appears down/right of the current one, so vertical and
+-- horizontal splits behave consistently.
+vim.opt.splitright = true   -- Vertical splits open to the right
+vim.opt.splitbelow = true   -- Horizontal splits open below
 
 vim.opt.wrap       = false   -- Disable soft wrapping text at end of screen
 -- vim.opt.linebreak  = true   -- Wrap at a whitespace only
@@ -67,6 +76,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
   group = listchars_group,
   command = "set nolist",
 })
+
 vim.api.nvim_create_autocmd("InsertLeave", {
   group = listchars_group,
   command = "set list",
