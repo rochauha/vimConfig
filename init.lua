@@ -267,8 +267,38 @@ vim.lsp.config("pyright", {
   },
 }) -- pyright for Python; requires pyright-langserver installed
 
-vim.lsp.enable({ "clangd", "rust_analyzer", "pyright" })
+vim.lsp.config("lua-language-server", {
+  cmd = { "lua-language-server" },
+  filetypes = { "lua" },
+  settings = {
+    Lua = {
+      -- Neovim embeds LuaJIT, not vanilla Lua 5.1.
+      runtime = { version = "LuaJIT" },
+      workspace = {
+        -- Don't prompt about third-party libraries.
+        checkThirdParty = false,
+        -- Teach the server about Neovim's Lua API so it knows about `vim.*`.
+        library = { vim.env.VIMRUNTIME },
+      },
+    },
+  },
+})
 
+vim.lsp.enable({ "clangd", "rust_analyzer", "pyright", "lua-language-server" })
+
+vim.diagnostic.config({ virtual_text = true }) -- show diagnostics inline
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client ~= nil and client:supports_method("textDocument/completion") then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
+  end,
+})
+
+-- autocomplete selects the first option by default. Configure it to not select.
+vim.cmd("set completeopt+=noselect")
 
 -- Temporary workaround to remove unused packages. Should be gone as vim.pack matures
 local function pack_clean()
